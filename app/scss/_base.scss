@@ -1,0 +1,136 @@
+// body {
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   position: relative;
+//   font-size: 10px;
+//   background-color: $background-lightest;
+// }
+
+.generic-highcharts {
+  height: 100%;
+  width: 100%;
+}
+
+
+/**
+ * Hacks needed to make demo pretty; can be removed when we incorporate into WP
+ */
+ body {
+     font-family: "franklin-gothic-urw",Verdana,Geneva,sans-serif;
+    //  text-rendering: optimizeLegibility;
+     line-height: 1;
+     color: #000;
+     font-size: 62.5%;
+     margin-bottom: 360px !important;
+ }
+
+ .switch > a {
+   font-size: 1em !important;
+ }
+
+ .year-dropdown {
+   width: 150px;
+    font-size: 1.3em;
+    border: 1px solid #aaa;
+    height: auto;
+    float: right;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-family: "franklin-gothic-urw",Verdana,Geneva,sans-serif;
+    color: #7C7C7C;
+    font-weight: bold;
+
+ }
+ //This is jacking up the React Select plugin
+ input:focus, button:focus, a.button:focus, select:focus, textarea:focus {
+ -webkit-box-shadow: none !important;
+ -moz-box-shadow:  none !important;
+ box-shadow:  none !important;
+  z-index: 1;
+}
+
+
+.block-button {
+  display: block;
+
+  color: #000;
+}
+
+.legend {
+  font-size: 1.4em;
+  padding: 6px 0;
+  float: left;
+  margin-bottom: 0;
+  margin-right: 20px;
+  font-family: "franklin-gothic-urw",​Verdana,​Geneva,​sans-serif;
+  line-height: 1;
+}
+ //End Hacks
+
+.party-toggle-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.democrat-label,
+.republican-label {
+  font-size: 1.6em;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 15px;
+}
+
+.democrat-label {
+  color: $democratic-blue;
+}
+.republican-label {
+  color: $republican-red;
+}
+
+.highcharts-plotband-label-no-bubble {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: relative;
+  font-weight: bold;
+  margin-top: 45px;
+}
+
+/*
+  Arrow pieces generated with http://www.cssarrowplease.com/
+ */
+$arrow-width: 10px;
+.highcharts-plotband-label {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: relative;
+	background: $background-light;
+	border: 2px solid #FFF;
+
+  &:after,
+  &:before {
+    top: 100%;
+  	left: 50%;
+  	border: solid transparent;
+  	content: " ";
+  	height: 0;
+  	width: 0;
+  	position: absolute;
+  	pointer-events: none;
+  }
+  &:after {
+    border-color: rgba(195, 187, 155, 0);
+  	border-top-color: $background-light;;
+  	border-width: $arrow-width;
+  	margin-left: -$arrow-width;
+  }
+  &:before {
+    border-color: rgba(255, 255, 255, 0);
+  	border-top-color: #FFF;
+  	border-width: $arrow-width + 3px;
+  	margin-left: -($arrow-width + 3px);
+  }
+}
