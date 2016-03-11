@@ -29,22 +29,6 @@ const AppStore = Object.assign(EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
-  getInteractiveData(){
-    return PolarizationAreaInteractiveAPI.getInteractiveData();
-  },
-
-  getCurrentSelectedYear(){
-    return PolarizationAreaInteractiveAPI.getCurrentSelectedYear();
-  },
-
-  getCurrentSelectedParty() {
-    return PolarizationAreaInteractiveAPI.getCurrentSelectedParty();
-  },
-
-  getCurrentSelectedPopulation() {
-    return PolarizationAreaInteractiveAPI.getCurrentSelectedPopulation();
-  },
-
   /**
    * Register dispatchers
    */
@@ -53,23 +37,8 @@ const AppStore = Object.assign(EventEmitter.prototype, {
       AppStore.emitChange()
     };
     switch (action.actionType) {
-      case AppConstants.CHART_DATA_UPDATE:
-        PolarizationAreaInteractiveAPI.updateChartData(action.data, emitChange);
-        break;
-      case AppConstants.CHART_SELECTED_POPULATION_UPDATE:
-        PolarizationAreaInteractiveAPI.updateCurrentSelectedPopulation(action.data, emitChange);
-        break;
-      case AppConstants.CHART_SELECTED_PARTY_UPDATE:
-        PolarizationAreaInteractiveAPI.updateCurrentSelectedPartyView(action.data, emitChange);
-        break;
-      case AppConstants.CHART_REFRESH:
-        PolarizationAreaInteractiveAPI.performChartRefresh(action.chart);
-        break;
-      case AppConstants.ANIMATE_INTERACTIVE_DATA:
-        PolarizationAreaInteractiveAPI.animateChartDatasets(action.data, action.chart, emitChange);
-        break;
-      case AppConstants.CHART_SERIES_VISIBLE_TOGGLE:
-        PolarizationAreaInteractiveAPI.setSeriesVisible(action.seriesToMakeVisible, emitChange);
+      case AppConstants.GENERIC_EVENT:
+        AppAPI.apiMethod(action.data, emitChange);
         break;
       default:
         return;
