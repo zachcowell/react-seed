@@ -8,46 +8,19 @@ var config = require('./server-config');
 process.env.NODE_ENV = process.env.NODE_ENV || config.env;
 
 var express = require('express');
+var compress = require('compression');
 var errorHandler = require('errorhandler');
 var logger = require('morgan');
-var basicAuth = require('basic-auth');
 
 var app = express();
 
-var auth = function(req, res, next) {
-  function unauthorized(res) {
-    res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-    return res.sendStatus(401);
-  }
-
-  var user = basicAuth(req);
-
-  if (!user || !user.name || !user.pass) {
-    return unauthorized(res);
-  }
-
-  // change this to something application specific
-  if (user.name === config.user.name && user.pass === config.user.password) {
-    return next();
-  } else {
-    return unauthorized(res);
-  }
-};
-
-var allowCrossDomain = function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-}
-
-
-app.use(auth);
-app.use(allowCrossDomain);
 app.use(logger('dev'));
+//Compression
+app.use(compress());
 
 //change to point to your directory that you wil be serving out of most likey build or dist
 app.use(express.static(__dirname + config.dest));
+
 
 app.use(errorHandler({
   dumpExceptions: true,
@@ -55,7 +28,7 @@ app.use(errorHandler({
 }));
 
 app.set('port', process.env.PORT || config.port);
-app.get('/', auth, function(req, res) {
+app.get('/', function(req, res) {
   res.send(200, 'Authenticated');
 });
 

@@ -11,5 +11,5 @@ module.exports = {
   },
   dest: '/../' + dist,
   port: 3000,
-  env: 'development'
+  env: 'production'
 };

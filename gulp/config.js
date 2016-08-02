@@ -62,7 +62,7 @@ module.exports = {
     dest: dist + '/img'
   },
   extras: {
-    src: app + '/*.{txt,ico}',
+    src: app + '/*.{txt,ico,xml}',
     dest: dist
   },
   fonts: {
@@ -83,7 +83,7 @@ module.exports = {
     scripts: app + '/**/*.js',
     fonts: app + '/fonts/**/*',
     images: app + '/img/**/*.{jpg,jpeg,png,gif,svg}',
-    extras: app + '/*.{txt,ico}'
+    extras: app + '/*.{txt,ico,xml}'
   },
   usemin: {
     src: dist + '/*.html',
